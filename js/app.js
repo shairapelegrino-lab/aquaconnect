@@ -87,6 +87,13 @@ window.AQ = window.AQ || {};
     obj[parts[parts.length - 1]] = value;
   }
 
+  function syncFromForm(fields) {
+    fields.forEach(function (pair) {
+      var el = document.getElementById(pair[0]);
+      if (el) setPath(pair[1], el.value);
+    });
+  }
+
   function finishLogin(message) {
     state.auth = true;
     state.loginBusy = false;
@@ -100,6 +107,7 @@ window.AQ = window.AQ || {};
   }
 
   function doLogin() {
+    syncFromForm([['loginId', 'form.login.identifier'], ['loginPw', 'form.login.password']]);
     var f = state.form.login;
     if (!f.identifier.trim() || !f.password.trim()) {
       state.loginError = 'Please enter your email or mobile number and password.';
@@ -113,6 +121,7 @@ window.AQ = window.AQ || {};
   }
 
   function doSignup() {
+    syncFromForm([['suName', 'form.signup.name'], ['suEmail', 'form.signup.email'], ['suPw', 'form.signup.password']]);
     var f = state.form.signup;
     if (!f.name.trim() || !f.email.trim() || !f.password.trim()) {
       state.signupError = 'Please fill in your name, email, and password.';
@@ -223,16 +232,10 @@ window.AQ = window.AQ || {};
         state.focusSelector = '[name=password]';
         render();
         break;
-      case 'login':
-        doLogin();
-        break;
       case 'login-google':
         state.loginBusy = true;
         render();
         setTimeout(function () { finishLogin('Signed in with Google.'); }, 700);
-        break;
-      case 'signup':
-        doSignup();
         break;
       case 'forgot':
         showToast('Password reset link sent to your registered email.', 'mail');
@@ -357,6 +360,24 @@ window.AQ = window.AQ || {};
     var el = e.target.closest('[data-action]');
     if (!el) return;
     handleAction(el.getAttribute('data-action'), el, e);
+  });
+
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    var kind = form && form.getAttribute ? form.getAttribute('data-form') : null;
+    if (!kind) return;
+    e.preventDefault();
+    if (kind === 'login') doLogin();
+    else if (kind === 'signup') doSignup();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    var form = e.target.closest ? e.target.closest('form[data-form]') : null;
+    if (!form) return;
+    e.preventDefault();
+    if (form.getAttribute('data-form') === 'login') doLogin();
+    else doSignup();
   });
 
   document.addEventListener('input', function (e) {

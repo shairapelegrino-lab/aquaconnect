@@ -37,7 +37,7 @@ window.AQ = window.AQ || {};
       '<button type="button" class="input-eye" data-action="toggle-password" aria-label="Show or hide password">' + (S.passwordVisible ? I.eyeOff(20) : I.eye(20)) + '</button>' +
       '</div></div>' +
       (S.loginError ? '<p class="form-error">' + U.esc(S.loginError) + '</p>' : '') +
-      '<button type="button" class="btn btn-primary btn-block" data-action="login"' + (S.loginBusy ? ' disabled' : '') + '>' + (S.loginBusy ? '<span class="spinner"></span>Logging in\u2026' : 'Log In') + '</button>' +
+      '<button type="submit" class="btn btn-primary btn-block"' + (S.loginBusy ? ' disabled' : '') + '>' + (S.loginBusy ? '<span class="spinner"></span>Logging in\u2026' : 'Log In') + '</button>' +
       '</form>' +
       '<a class="link-center" data-action="forgot">Forgot Password?</a>' +
       '<div class="divider">or</div>' +
@@ -63,7 +63,7 @@ window.AQ = window.AQ || {};
       '<div class="field"><label for="suPw">Password</label>' +
       '<input id="suPw" class="input" name="password" type="password" placeholder="Enter your password" autocomplete="new-password" value="' + U.esc(f.password) + '" data-model="form.signup.password"></div>' +
       (S.signupError ? '<p class="form-error">' + U.esc(S.signupError) + '</p>' : '') +
-      '<button type="button" class="btn btn-primary btn-block" data-action="signup"' + (S.signupBusy ? ' disabled' : '') + '>' + (S.signupBusy ? '<span class="spinner"></span>Creating account\u2026' : 'Create Account') + '</button>' +
+      '<button type="submit" class="btn btn-primary btn-block"' + (S.signupBusy ? ' disabled' : '') + '>' + (S.signupBusy ? '<span class="spinner"></span>Creating account\u2026' : 'Create Account') + '</button>' +
       '</form>' +
       '<p class="muted small" style="text-align:center;margin-top:16px">Already have an account? <a data-action="go-login">Log In</a></p>' +
       '<p class="muted small" style="text-align:center;margin-top:14px;line-height:1.5">By creating an account you agree to the Terms of Service and Privacy Policy of BCWD AquaConnect.</p>' +
