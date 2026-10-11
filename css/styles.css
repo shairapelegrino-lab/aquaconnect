@@ -333,9 +333,9 @@ img { display: block; max-width: 100%; }
 .welcome-foot .muted a { font-weight: 700; }
 
 .logo { display: inline-flex; }
-.logo-img { object-fit: cover; object-view-box: inset(13.5% 33.7% 44.1% 33.8%); mix-blend-mode: multiply; filter: brightness(1.06); }
-.logo-xl .logo-img { width: 85px; height: 112px; }
-.logo-md .logo-img { width: 52px; height: 68px; }
+.logo-img { object-fit: contain; filter: drop-shadow(0 6px 14px rgba(10, 74, 128, 0.16)); }
+.logo-xl .logo-img { width: 96px; height: 96px; }
+.logo-md .logo-img { width: 56px; height: 56px; }
 .welcome-head h1 .accent, .auth-head h1 .accent { color: var(--blue-500); }
 
 .auth { padding: 18px 24px 30px; }

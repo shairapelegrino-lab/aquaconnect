@@ -47,9 +47,8 @@ AQ.icons = (function () {
   };
 
   function logo(h) {
-    var height = h || 112;
-    var width = Math.round(height * 0.76);
-    return '<img class="logo-img" src="assets/logo.png" width="' + width + '" height="' + height + '" alt="AquaConnect logo">';
+    var size = h || 112;
+    return '<img class="logo-img" src="assets/logo.png" width="' + size + '" height="' + size + '" alt="AquaConnect logo">';
   }
 
   function statusRight() {
