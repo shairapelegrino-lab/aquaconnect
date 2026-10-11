@@ -3,6 +3,7 @@ window.AQ = window.AQ || {};
 (function () {
   var U = AQ.util;
   var C = AQ.components;
+  var DEMO_USER = JSON.parse(JSON.stringify(AQ.DATA.user));
 
   var state = {
     auth: false,
@@ -136,7 +137,13 @@ window.AQ = window.AQ || {};
     state.signupError = '';
     state.signupBusy = true;
     render();
-    setTimeout(function () { finishLogin('Account created. Welcome to AquaConnect!'); }, 1000);
+    var name = f.name.trim();
+    var email = f.email.trim();
+    setTimeout(function () {
+      AQ.DATA.user.name = name;
+      AQ.DATA.user.email = email;
+      finishLogin('Welcome, ' + name + '! Your account is ready.');
+    }, 1000);
   }
 
   function switchTab(tab) {
@@ -167,6 +174,7 @@ window.AQ = window.AQ || {};
     state.form.login = { identifier: '', password: '' };
     state.alertsRead = false;
     state.selectedArea = null;
+    Object.keys(DEMO_USER).forEach(function (k) { AQ.DATA.user[k] = DEMO_USER[k]; });
     render();
     showToast('You have been logged out.');
   }
