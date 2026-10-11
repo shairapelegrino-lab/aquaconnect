@@ -377,6 +377,10 @@ window.AQ = window.AQ || {};
   });
 
   function boot() {
+    var m = /[?&]screen=([a-z-]+)/.exec(location.search);
+    if (m && (m[1] === 'login' || m[1] === 'signup' || m[1] === 'welcome')) {
+      state.authRoute = m[1];
+    }
     render();
   }
 
